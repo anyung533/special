@@ -1,5 +1,5 @@
 
-cp -rf /ql/repo/anyung533_jd_special/utils /ql/scripts/
+cp -rf /ql/repo/anyung533_special/utils /ql/scripts/
 cd /ql/scripts && npm install got
 cd /ql/scripts && npm install tough-cookie
 cd /ql/scripts && npm install axios date-fns
