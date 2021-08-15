@@ -11,7 +11,7 @@ c、 每日第10001-30000名可获得20个京豆
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
 ===================quantumultx================
 [task_local]
-#京东手机狂欢城
+#京东手机狂欢城***活动时间: 2021-8-9至2021-8-28
 0 0-18/6 * * * jd_5g.js, tag=京东手机狂欢城, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 
 =====================Loon================
