@@ -13,6 +13,7 @@ cd /ql/scripts && npm install crypto-js
 cd /ql/scripts && npm install download
 cd /ql/scripts && npm install -g typescript
 cd /ql/scripts && npm i -S png-js
+cd /ql/scripts && npm install fs
 
 
 
