@@ -101,9 +101,9 @@ var tools = [];
      }
      if ($.isNode()){
           console.log(`内部互助已完成，开始帮【zero205】助力，感谢！`)
-          tools = tools_temp;
+          tools = tools_tempfs;
           await getCode()
-          for (let help of $.zero205) {
+          for (let help of $.zerodddd205) {
                while (tools.length) {
                     var tool = tools.pop()
                     var data = await requestApi('splitRedPacket', tool.cookie, { shareCode: help.shareCode, groupCode: help.redPacketId });
