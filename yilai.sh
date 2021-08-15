@@ -1,6 +1,7 @@
 
 cp -rf /ql/repo/anyung533_special/utils /ql/scripts/
 cp -rf /ql/repo/anyung533_special/utils/jdCookie.js /ql/scripts/
+cp -rf /ql/repo/anyung533_special/utils/USER_AGENTS.js /ql/scripts/
 cd /ql/scripts && npm install got
 cd /ql/scripts && npm install tough-cookie
 cd /ql/scripts && npm install axios date-fns
