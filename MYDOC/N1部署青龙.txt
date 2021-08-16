@@ -102,5 +102,7 @@ pm2 start
 使用京东扫描二维码登录，提示升级版本无需理会，直接回到网页等待跳转，登录成功显示用户名或者提示添加成功即自动上车。
 
 
+ql repo https://ghproxy.com/https://github.com/anyung533/special.git "jd_|jx_|pull|gua_|code_|zy_" "JDJRValidator_Pure.js|sign_graphics_validate.js|MovementFaker.js|ZooFaker_Necklace.js|jd_sign_validate.js"
+
 
 
