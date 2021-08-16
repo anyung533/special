@@ -90,6 +90,8 @@ NINJA_PORT: Ninja 运行端口（默认 5701）
 NINJA_NOTIFY: 是否开启通知功能（默认 true）
 NINJA_UA: 自定义 UA，默认为随机
 配置方式：
+docker exec -it qinglong /bin/sh
+
 
 cd /root/CEST/ninja/backend
 cp .env.example .env
@@ -104,5 +106,19 @@ pm2 start
 
 ql repo https://ghproxy.com/https://github.com/anyung533/special.git "jd_|jx_|pull|gua_|code_|zy_" "JDJRValidator_Pure.js|sign_graphics_validate.js|MovementFaker.js|ZooFaker_Necklace.js|jd_sign_validate.js"
 
+# ........................ ................................................
+ALLOW_ADD=true
+
+#.................................
+ALLOW_NUM=40
+
+# Ninja ............
+NINJA_PORT=5701
+
+# Ninja ..................
+NINJA_NOTIFY=true
+
+# user-agent
+# NINJA_UA=""
 
 
