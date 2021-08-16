@@ -1,28 +1,12 @@
-docker run -dit \
--v /root/CEST/config:/ql/config \
--v /root/CEST/log:/ql/log \
--v /root/CEST/db:/ql/db \
--v /root/CEST/scripts:/ql/scripts \
--p 5008:5700 \
---name qinglong \
---hostname qinglong \
---restart always \
-whyour/qinglong:latest
-
-
-docker run -dit \
--v /root/CEST/config:/ql/config \
--v /root/CEST/log:/ql/log \
--v /root/CEST/db:/ql/db \
--v /root/CEST/scripts:/ql/scripts \
--p 5199:5700 \
---name qinglong \
---hostname qinglong \
---restart always \
-whyour/qinglong:latest
-
-
 备份文件
+
+删除容器及文件夹
+docker stop qinglong
+docker rm qinglong
+rm -rf CEST
+
+
+
 
 docker run -dit \
   -v /root/CEST/config:/ql/config \
@@ -33,18 +17,15 @@ docker run -dit \
   -v /root/CEST/scripts:/ql/scripts \
   -v /root/CEST/jbot:/ql/jbot \
   -v /root/CEST/ninja:/ql/ninja \
-  -p 5008:5700 \
-  -p 5018:5701 \
+  -p 5199:5700 \
+  -p 5299:5701 \
   --name qinglong \
   --hostname qinglong \
   --restart unless-stopped \
   whyour/qinglong:latest
   
   
-删除容器及文件夹
-docker rm qinglong
-rm -rf CEST
-  
+
 进容器内执行以下命令docker exec -it qinglong /bin/sh
 
 git clone https://github.com/MoonBegonia/ninja.git /ql/ninja
@@ -110,7 +91,7 @@ NINJA_NOTIFY: 是否开启通知功能（默认 true）
 NINJA_UA: 自定义 UA，默认为随机
 配置方式：
 
-cd /CEST/ninja/backend
+cd /root/CEST/ninja/backend
 cp .env.example .env
 vi .env
 
