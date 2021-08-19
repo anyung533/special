@@ -14,3 +14,9 @@ cp -rf /ql/repo/anyung533_special/utils/jdDreamFactoryShareCodes.js /ql/scripts/
 cp -rf /ql/repo/anyung533_special/utils/jd_sign_validate.js /ql/scripts/
 cp -rf /ql/repo/anyung533_special/MYDOC/favicon.ico /ql/ninja/backend/static/
 cp -rf /ql/repo/anyung533_special/MYDOC/index.html /ql/ninja/backend/static/
+cp -rf /ql/repo/anyung533_special/utils/code.sh /ql/config/
+cp -rf /ql/repo/anyung533_special/utils/team.sh /ql/config/
+#名称：格式化更新互助码
+#命令：task /ql/config/code.sh
+#定时规则：10 * * * *
+
