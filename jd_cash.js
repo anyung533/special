@@ -8,17 +8,17 @@
 ============Quantumultx===============
 [task_local]
 #签到领现金
-0 12 * * * jd_cash.js, tag=签到领现金, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+2 0-23/4 * * * jd_cash.js, tag=签到领现金, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 
 ================Loon==============
 [Script]
-cron "0 12 * * *" script-path=jd_cash.js,tag=签到领现金
+cron "2 0-23/4 * * *" script-path=jd_cash.js,tag=签到领现金
 
 ===============Surge=================
-签到领现金 = type=cron,cronexp="0 12 * * *",wake-system=1,timeout=3600,script-path=jd_cash.js
+签到领现金 = type=cron,cronexp="2 0-23/4 * * *",wake-system=1,timeout=3600,script-path=jd_cash.js
 
 ============小火箭=========
-签到领现金 = type=cron,script-path=jd_cash.js, cronexpr="0 12 * * *", timeout=3600, enable=true
+签到领现金 = type=cron,script-path=jd_cash.js, cronexpr="2 0-23/4 * * *", timeout=3600, enable=true
  */
 const $ = new Env('签到领现金');
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -28,10 +28,11 @@ let jdNotify = false;//是否关闭通知，false打开通知推送，true关闭
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
 let helpAuthor = false;
-const randomCount = $.isNode() ? 5 : 0;
+const randomCount = $.isNode() ? 5 : 5;
 let cash_exchange = false;//是否消耗2元红包兑换200京豆，默认否
 const inviteCodes = [
-  `qusiba`
+  `IB4-aeuwb_og7GzdyXcW0A@cUpuNL3sbvom9A@eVFiMrvgN6Jx@ZE9iDqv1Hbx0gzWPiys@9pGDuU0qsG6wKcNTy3YT08KI@Ihg_auyzZ_wn8mm6iw@a0JmM6bqI614pmvWyA@eU9Yae-2Yvwk9GzUwnJC0Q@eU9YJJDwOopDkzuiiS9K@eU9Ya-_mN_l38DzQzCYW1g@eU9Ya--0MPV1oGbSzyAb1Q`,
+  `IB4-aeuwb_og7GzdyXcW0A@cUpuNL3sbvom9A@eVFiMrvgN6Jx@ZE9iDqv1Hbx0gzWPiys@9pGDuU0qsG6wKcNTy3YT08KI@Ihg_auyzZ_wn8mm6iw@a0JmM6bqI614pmvWyA@eU9Yae-2Yvwk9GzUwnJC0Q@eU9YJJDwOopDkzuiiS9K@eU9Ya-_mN_l38DzQzCYW1g@eU9Ya--0MPV1oGbSzyAb1Q`,
 ]
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
@@ -49,11 +50,11 @@ let allMessage = '';
     return;
   }
   await requireConfig()
-  $.authorCode = await getAuthorShareCode('https://raw.githubusercontent.com/Aaron-lv/updateTeam/master/shareCodes/jd_updateCash.json')
+  $.authorCode = await getAuthorShareCode('https://raw.githubusercontent.com/anyung533/updateTeam/master/shareCodes/jd_updateCash.json')
   if (!$.authorCode) {
-    $.http.get({url: 'https://purge.jsdelivr.net/gh/Aaron-lv/updateTeam@master/shareCodes/jd_updateCash.json'}).then((resp) => {}).catch((e) => $.log('刷新CDN异常', e));
+    $.http.get({url: 'https://purge.jsdelivr.net/gh/anyung533/updateTeam@master/shareCodes/jd_updateCash.json'}).then((resp) => {}).catch((e) => $.log('刷新CDN异常', e));
     await $.wait(1000)
-    $.authorCode = await getAuthorShareCode('https://zhuang.ml/gh/Aaron-lv/updateTeam@master/shareCodes/jd_updateCash.json') || []
+    $.authorCode = await getAuthorShareCode('https://cdn.jsdelivr.net/gh/anyung533/updateTeam@master/shareCodes/jd_updateCash.json') || []
   }
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
@@ -96,28 +97,28 @@ async function jdCash() {
   await getReward('2');
   $.exchangeBeanNum = 0;
   cash_exchange = $.isNode() ? (process.env.CASH_EXCHANGE ? process.env.CASH_EXCHANGE : `${cash_exchange}`) : ($.getdata('cash_exchange') ? $.getdata('cash_exchange') : `${cash_exchange}`);
-  if (cash_exchange === 'true') {
-    if(Number($.signMoney) >= 2){
-      console.log(`\n\n开始花费2元红包兑换200京豆，一周可换五次`)
-      for (let item of ["-1", "0", "1", "2", "3"]) {
-        $.canLoop = true;
-        if ($.canLoop) {
-          for (let i = 0; i < 5; i++) {
-            await exchange2(item);//兑换200京豆(2元红包换200京豆，一周5次。)
-          }
-          if (!$.canLoop) {
-            console.log(`已找到符合的兑换条件，跳出\n`);
-            break
-          }
-        }
-      }
-      if ($.exchangeBeanNum) {
-        message += `兑换京豆成功，获得${$.exchangeBeanNum * 100}京豆\n`;
-      }
-    }else{
-      console.log(`\n\n现金不够2元，不进行兑换200京豆，`)
-    }
-  }
+  // if (cash_exchange === 'true') {
+  //   if(Number($.signMoney) >= 2){
+  //     console.log(`\n\n开始花费2元红包兑换200京豆，一周可换五次`)
+  //     for (let item of ["-1", "0", "1", "2", "3"]) {
+  //       $.canLoop = true;
+  //       if ($.canLoop) {
+  //         for (let i = 0; i < 5; i++) {
+  //           await exchange2(item);//兑换200京豆(2元红包换200京豆，一周5次。)
+  //         }
+  //         if (!$.canLoop) {
+  //           console.log(`已找到符合的兑换条件，跳出\n`);
+  //           break
+  //         }
+  //       }
+  //     }
+  //     if ($.exchangeBeanNum) {
+  //       message += `兑换京豆成功，获得${$.exchangeBeanNum * 100}京豆\n`;
+  //     }
+  //   }else{
+  //     console.log(`\n\n现金不够2元，不进行兑换200京豆，`)
+  //   }
+  // }
   await index(true)
   // await showMsg()
 }
