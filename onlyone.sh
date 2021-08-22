@@ -1,11 +1,13 @@
+cd /ql/scripts && npm fund
+cd /ql/scripts && npm install jsdom
 cd /ql/scripts && npm install got
 cd /ql/scripts && npm install tough-cookie
 cd /ql/scripts && npm install axios date-fns
 cd /ql/scripts && npm install crypto-js
+cd /ql/scripts && npm install crypto -g
 cd /ql/scripts && npm install download
 cd /ql/scripts && npm install -g typescript
 cd /ql/scripts && npm i -S png-js
-cd /ql/scripts && npm install fs
 
 
 
@@ -20,5 +22,3 @@ cd /ql/scripts && apk add python3 zlib-dev gcc jpeg-dev python3-dev musl-dev fre
 
 
 cd /ql/scripts/ && apk add --no-cache build-base g++ cairo-dev pango-dev giflib-dev && npm i && npm i -S ts-node typescript @types/node date-fns axios png-js canvas --build-from-source
-
-cp -rf /ql/repo/anyung533_special/JS_USER_AGENTS.js /ql/scripts/      

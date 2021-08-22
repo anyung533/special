@@ -1,14 +1,11 @@
 /*
-tgchannel：https://t.me/Ariszy8028
-github：https://github.com/Ariszy/Private-Script
-boxjs：https://raw.githubusercontent.com/Ariszy/Private-Script/master/Ariszy.boxjs.json
 
 [task_local]
-#来电好物季
-10 1,8,16 * * * zy_ldhwj.js
+#汽车生活节
+10 0,1,6,16 * * * zy_qcshj.js, tag= 汽车生活节
 
 */
-const $ = new Env('来电好物季')
+const $ = new Env('汽车生活节')
 const notify = $.isNode() ?require('./sendNotify') : '';
 cookiesArr = []
 CodeArr = []
@@ -65,12 +62,12 @@ if ($.isNode()) {
                 continue
             }
       
-      await gethelpcode()
-      await getlist()
-      await Ariszy()
-      await zy()
+       await gethelpcode()
+       await getlist()
+       await Ariszy()
+       await zy()
       
-  }
+   }
 for(let i = 0; i < cookiesArr.length; i++){
       cookie = cookiesArr[i];
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
@@ -80,6 +77,7 @@ for(let i = 0; i < cookiesArr.length; i++){
        console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}助力模块*********\n`);
       
       await control()
+      await Lottery()
       await userScore()
 }
 
@@ -148,7 +146,7 @@ async function DoTask(){
    })
   }
 async function Lottery(){
- const body = `functionId=healthyDay_getLotteryResult&body=%7B%22appId%22%3A%221E1NYwqc%22%2C%22taskId%22%3A2%7D&client=wh5&clientVersion=1.0.0`
+ const body = `functionId=healthyDay_getLotteryResult&body=%7B%22appId%22%3A%221E1xRy6c%22%2C%22taskId%22%3A7%7D&client=wh5&clientVersion=1.0.0`
  const MyRequest = PostRequest(``,body)
  return new Promise((resolve) => {
    $.post(MyRequest,async(error, response, data) =>{
@@ -170,7 +168,7 @@ async function Lottery(){
    })
   }
 async function getLottery(){
- const body = `functionId=interact_template_getLotteryResult&body=%7B%22appId%22:%221E1NYw6w%22%7D&client=wh5&clientVersion=1.0.0`
+ const body = `functionId=interact_template_getLotteryResult&body=%7B%22appId%22:%221E1xRy6c%22%7D&client=wh5&clientVersion=1.0.0`
  const MyRequest = PostRequest(``,body)
  return new Promise((resolve) => {
    $.post(MyRequest,async(error, response, data) =>{
@@ -181,7 +179,7 @@ async function getLottery(){
            console.log("\n获得"+result.data.result.userAwardsCacheDto.jBeanAwardVo.prizeName+"\n")
    await $.wait(4000)
         }else{
-           $.log("恭喜你，抽中了0豆豆\n")
+           $.log(result.data.bizMsg+"\n")
         }
         }catch(e) {
           $.logErr(e, response);
@@ -214,7 +212,7 @@ async function control(){
 }
 }
 async function dosupport(){
-   const body = `functionId=harmony_collectScore&body=%7B%22appId%22%3A%221E1NYw6w%22%2C%22taskToken%22%3A%22${helpcode}%22%2C%22taskId%22%3A12%2C%22actionType%22%3A0%7D&client=wh5&clientVersion=1.0.0`
+   const body = `functionId=harmony_collectScore&body=%7B%22appId%22%3A%221E1xRy6c%22%2C%22taskToken%22%3A%22${helpcode}%22%2C%22taskId%22%3A6%2C%22actionType%22%3A0%7D&client=wh5&clientVersion=1.0.0`
  const MyRequest = PostRequest(``,body)
  return new Promise((resolve) => {
    $.post(MyRequest,async(error, response, data) =>{
@@ -236,7 +234,7 @@ async function dosupport(){
    })
   }
 async function getlist(){
- const MyRequest = PostRequest(``,`functionId=healthyDay_getHomeData&body={"appId":"1E1NYw6w","taskToken":"","channelId":1}&client=wh5&clientVersion=1.0.0`)
+ const MyRequest = PostRequest(``,`functionId=healthyDay_getHomeData&body={"appId":"1E1xRy6c","taskToken":"","channelId":1}&client=wh5&clientVersion=1.0.0`)
  return new Promise((resolve) => {
     $.post(MyRequest,async(error, response, data) =>{
     try{
@@ -244,11 +242,11 @@ async function getlist(){
         if(logs)$.log(data)
         if(result.code == 0){
        console.log("查看任务列表\n")
-       let list1 = result.data.result.taskVos.find(item => item.taskId == 1)
-       
-       listtokenArr.push(1+list1.simpleRecordInfoVo.taskToken)
-list2tokenArr.push(list1.simpleRecordInfoVo.taskToken)
-       
+       let list7 = result.data.result.taskVos.find(item => item.taskId == 7)
+       for(let i = 0; i < list7.shoppingActivityVos.length; i ++){
+       listtokenArr.push(7+list7.shoppingActivityVos[i].taskToken)
+list2tokenArr.push(list7.shoppingActivityVos[i].taskToken)
+       }
        
        let list2 = result.data.result.taskVos.find(item => item.taskId == 2)
        for(let i = 0; i < list2.shoppingActivityVos.length; i ++){
@@ -256,10 +254,10 @@ list2tokenArr.push(list1.simpleRecordInfoVo.taskToken)
 list2tokenArr.push(list2.shoppingActivityVos[i].taskToken)
        }
        
-       let list6 = result.data.result.taskVos.find(item => item.taskId == 6)
-       for(let i = 0; i < list6.shoppingActivityVos.length; i ++){
-       listtokenArr.push(6+list6.shoppingActivityVos[i].taskToken)
-list2tokenArr.push(list6.shoppingActivityVos[i].taskToken)
+       let list3 = result.data.result.taskVos.find(item => item.taskId == 3)
+       for(let i = 0; i < list3.shoppingActivityVos.length; i ++){
+       listtokenArr.push(3+list3.shoppingActivityVos[i].taskToken)
+list2tokenArr.push(list3.shoppingActivityVos[i].taskToken)
        }
        
        let list4 = result.data.result.taskVos.find(item => item.taskId == 4)
@@ -269,11 +267,19 @@ list2tokenArr.push(list4.shoppingActivityVos[i].taskToken)
        }
     
        let list5 = result.data.result.taskVos.find(item => item.taskId == 5)
-       for(let i = 0; i < list5.shoppingActivityVos.length; i ++){listtokenArr.push(5+list5.shoppingActivityVos[i].taskToken)
-list2tokenArr.push(list5.shoppingActivityVos[i].taskToken)
-//$.log(list5.shoppingActivityVos[i].taskToken)
+       for(let i = 0; i < list5.followShopVo.length; i ++){listtokenArr.push(5+list5.followShopVo[i].taskToken)
+list2tokenArr.push(list5.followShopVo[i].taskToken)
+//$.log(list5.followShopVo[i].taskToken)
        }
-      // $.log(JSON.stringify(listtokenArr))
+       let list6 = result.data.result.taskVos.find(item => item.taskId == 6)
+       for(let i = 0; i < list6.brandMemberVos.length; i ++){listtokenArr.push(6+list6.brandMemberVos[i].taskToken)
+list2tokenArr.push(list6.brandMemberVos[i].taskToken)
+       }
+       let list9 = result.data.result.taskVos.find(item => item.taskId == 9)
+       for(let i = 0; i < list9.productInfoVos.length; i ++){listtokenArr.push(9+list9.productInfoVos[i].taskToken)
+list2tokenArr.push(list9.productInfoVos[i].taskToken)
+       }
+       //$.log(JSON.stringify(listtokenArr))
       
         }else{
            $.log(result.data.bizMsg+"\n")
@@ -288,7 +294,7 @@ list2tokenArr.push(list5.shoppingActivityVos[i].taskToken)
   }
 
 async function gethelpcode(){
- const MyRequest = PostRequest(``,`functionId=healthyDay_getHomeData&body={"appId":"1E1NYw6w","taskToken":"","channelId":1}&client=wh5&clientVersion=1.0.0`)
+ const MyRequest = PostRequest(``,`functionId=healthyDay_getHomeData&body={"appId":"1E1xRy6c","taskToken":"","channelId":1}&client=wh5&clientVersion=1.0.0`)
  return new Promise((resolve) => {
     $.post(MyRequest,async(error, response, data) =>{
     try{
@@ -296,12 +302,12 @@ async function gethelpcode(){
         if(logs)$.log(data)
         if(result.code == 0){
 
-let list11 = result.data.result.taskVos.find(item => item.taskId == 11)
+let list8 = result.data.result.taskVos.find(item => item.taskId == 8)
 
        
-   list4tokenArr.push(11+list11.assistTaskDetailVo.taskToken)
-list6tokenArr.push(list11.assistTaskDetailVo.taskToken)
-
+   list4tokenArr.push(8+list8.assistTaskDetailVo.taskToken)
+list6tokenArr.push(list8.assistTaskDetailVo.taskToken)
+        
         }else{
            $.log(result.data.bizMsg+"\n")
         }
@@ -315,7 +321,7 @@ list6tokenArr.push(list11.assistTaskDetailVo.taskToken)
   }
 
 async function userScore(){
- const MyRequest = PostRequest(``,`functionId=healthyDay_getHomeData&body={"appId":"1E1NYw6w","taskToken":"","channelId":1}&client=wh5&clientVersion=1.0.0`)
+ const MyRequest = PostRequest(``,`functionId=healthyDay_getHomeData&body={"appId":"1E1xRy6c","taskToken":"","channelId":1}&client=wh5&clientVersion=1.0.0`)
  return new Promise((resolve) => {
     $.post(MyRequest,async(error, response, data) =>{
     try{
@@ -323,7 +329,7 @@ async function userScore(){
         if(logs)$.log(data)
         if(result.code == 0){
         let userScore = result.data.result.userInfo.userScore
-        $.log("共有电力值："+userScore+";开始抽奖"+Math.floor(userScore/100)+"次")
+        $.log("共有燃力值："+userScore+";开始抽奖"+Math.floor(userScore/200)+"次")
         for(let i = 0; i < Math.floor(userScore/100); i++){
         await getLottery()
         }
