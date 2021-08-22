@@ -17,7 +17,7 @@ cp -rf /ql/repo/anyung533_special/MYDOC/index.html /ql/ninja/backend/static/
 cp -rf /ql/repo/anyung533_special/utils/code.sh /ql/config/
 cp -rf /ql/repo/anyung533_special/utils/team.sh /ql/config/
 cp -rf /ql/repo/anyung533_special/utils/JDJRValidator_Smiek.js /ql/scripts/
-
+cp -rf /ql/repo/anyung533_special/utils/jd_sign_graphics.js /ql/scripts/
 
 #名称：格式化更新互助码
 #命令：task /ql/config/code.sh

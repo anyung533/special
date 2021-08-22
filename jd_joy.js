@@ -50,21 +50,8 @@ let teamLevel = `2`;//参加多少人的赛跑比赛，默认是双人赛跑，�
 let joyRunFlag = true;
 let jdNotify = true;//是否开启静默运行，默认true开启
 let joyRunNotify = true;//宠汪汪赛跑获胜后是否推送通知，true推送，false不推送通知
-<<<<<<< HEAD
-let JD_API_HOST = 'https://jdjoy.jd.com'
-if(process.env.JOY_HOST){
-  JD_API_HOST = process.env.JOY_HOST
-}
-
-const weAppUrl = 'https://jdjoy.jd.com//pet';
-// const validator = require('./JDJRValidator.js');
-const validator = require('./JDJRValidator_Pure.js');
-$.get=validator.injectToRequest($.get.bind($))
-$.post=validator.injectToRequest($.post.bind($))
-=======
 const JD_API_HOST = 'https://jdjoy.jd.com/pet'
 const weAppUrl = 'https://draw.jdfcloud.com//pet';
->>>>>>> 5b750e37e53f8c21e93ce9d4ddae299985cb42df
 !(async () => {
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
